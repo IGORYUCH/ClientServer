@@ -44,7 +44,18 @@
                 <GroupBox  Grid.Column="0" Header="Сообщения" >
                     <Grid>
                         <ScrollViewer>
-                            <TextBlock Text="{Binding MessagesText}" x:Name="MessagesBlock" TextWrapping="Wrap"/>
+                            <TextBlock x:Name="MessagesBlock" TextWrapping="Wrap"><InlineUIContainer>
+                                    <GroupBox Header="GroupBox" Height="198" Width="312" RenderTransformOrigin="0.5,0.5">
+                                        <GroupBox.RenderTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform/>
+                                                <SkewTransform/>
+                                                <RotateTransform Angle="47.285"/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </GroupBox.RenderTransform>
+                                    </GroupBox>
+                                </InlineUIContainer></TextBlock>
                         </ScrollViewer>
                     </Grid>
                 </GroupBox>
