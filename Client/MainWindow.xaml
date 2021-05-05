@@ -1,0 +1,59 @@
+﻿<Window x:Class="Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        mc:Ignorable="d"
+        Title="Client" Height="420" Width="500">
+    <Grid Margin="0,0,2,2">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="8"/>
+                <RowDefinition/>
+                <RowDefinition Height="8"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid Row="0" HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="0" Content="Статус:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Grid.Column="1" x:Name="ConnectionStatusLabel" Content="{Binding ConnectionStatus}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" />
+                <Button Grid.Column="2" x:Name="ConnectDisconnectButton" Content="{Binding ConnectDisconnectButtonStatus}" Command="{Binding ConnectDisconnectButtonCommand}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="22"/>
+                <Label Grid.Column ="3" Content="Порт:"/>
+                <TextBox Grid.Column="4" Height="22" Width="60" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Port}" IsEnabled="{Binding PortTextBoxEnabled}"/>
+                <Label Grid.Column="5" Content="Адрес:"/>
+                <TextBox Grid.Column="6" Text="{Binding Address}" IsEnabled="{Binding AddressTextBoxEnabled}" Height="22" Width="100"/>
+            </Grid>
+            <Separator Grid.Row="1" VerticalAlignment="Center"/>
+            <GroupBox Grid.Row="2" Header="Сообщения">
+                <Grid>
+                    <ScrollViewer>
+                        <TextBlock x:Name="MessageBlock" Text="{Binding MessagesText}" TextWrapping="Wrap" />
+                    </ScrollViewer>
+                </Grid>
+            </GroupBox>
+            <Separator Grid.Row="3" VerticalAlignment="Center"/>
+            <Grid Row="4" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="0" Content="Введите сообщение:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox  Grid.Column="1" Text="{Binding MessageText}"  x:Name="SendMessageBox" TextWrapping="Wrap" Height="22" VerticalAlignment="Center" Margin="5,2"/>
+                <Button  Grid.Column="2" x:Name="SendButton" Content="Отправить" HorizontalAlignment="Center" Width="75" Height="22" VerticalAlignment="Center" Command="{Binding SendMessageCommand}" CommandParameter="{Binding ElementName=SendMessageBox, Path=Text}" IsEnabled="{Binding SendMessageButtonEnabled}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
