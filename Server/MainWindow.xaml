@@ -44,42 +44,19 @@
                 <GroupBox  Grid.Column="0" Header="Сообщения" >
                     <Grid>
                         <ScrollViewer>
-                            <TextBlock x:Name="MessagesBlock" TextWrapping="Wrap"><InlineUIContainer>
-                                    <GroupBox Header="GroupBox" Height="198" Width="312" RenderTransformOrigin="0.5,0.5">
-                                        <GroupBox.RenderTransform>
-                                            <TransformGroup>
-                                                <ScaleTransform/>
-                                                <SkewTransform/>
-                                                <RotateTransform Angle="47.285"/>
-                                                <TranslateTransform/>
-                                            </TransformGroup>
-                                        </GroupBox.RenderTransform>
-                                    </GroupBox>
-                                </InlineUIContainer></TextBlock>
+                            <TextBlock x:Name="MessagesBlock" TextWrapping="Wrap" Text="{Binding MessagesText}"/>
                         </ScrollViewer>
                     </Grid>
                 </GroupBox>
 
                 <GroupBox Grid.Column="1" Header="Подключенные клиенты">
                     <Grid>
-                        <ListBox x:Name="ConnectedUsersList" ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="auto"></ColumnDefinition>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
-                                            <ColumnDefinition Width="auto"></ColumnDefinition>
-                                            <ColumnDefinition Width="auto"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Label Grid.Column="0" Content="Host:"></Label>
-                                        <Label Grid.Column="1" Content="{Binding Path=Address}"></Label>
-                                        <Label Grid.Column="2" Content="Port:"></Label>
-                                        <Label Grid.Column="3" Content="{Binding Path=Port}"></Label>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                        <DataGrid x:Name="df" ItemsSource="{Binding Clients}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedClient}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Адрес" Binding="{ Binding Path=Address}" Width="3*"/>
+                                <DataGridTextColumn Header="Адрес" Binding="{Binding Path=Port}" Width="2*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
                 </GroupBox>
             </Grid>
@@ -98,7 +75,7 @@
                 <Label Grid.Column="0"  Content="Введите сообщение:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox Grid.Column="1" Text="{Binding MessageText}" x:Name="SendMessageBox" Height="22" TextWrapping="Wrap" VerticalAlignment="Center"/>
                 <Label Grid.Column="2" Content="Получатель:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Label  Grid.Column="3" x:Name="ReceiverLabel"  Content="{Binding Path=SelectedConnectedUser.Address, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100"/>
+                <Label  Grid.Column="3" x:Name="ReceiverLabel"  Content="{Binding Path=SelectedClient.Address, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100"/>
                 <Button Command="{Binding Path=SendMessageCommand}" CommandParameter="{Binding ElementName=SendMessageBox, Path=Text}" Grid.Column="4" x:Name="SendMessageButton" Content="Отправить" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="4" Height="22" Width="75" IsEnabled="{Binding SendMessageButtonEnabled}"/>
 
             </Grid>
