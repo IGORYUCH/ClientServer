@@ -53,8 +53,8 @@
                     <Grid>
                         <DataGrid x:Name="df" ItemsSource="{Binding Clients}" AutoGenerateColumns="False" SelectedItem="{Binding SelectedClient}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Адрес" Binding="{ Binding Path=Address}" Width="3*"/>
-                                <DataGridTextColumn Header="Адрес" Binding="{Binding Path=Port}" Width="2*"/>
+                                <DataGridTextColumn Header="Адрес" Binding="{Binding Path=Address, Mode=OneWay}" Width="3*"/>
+                                <DataGridTextColumn Header="Адрес" Binding="{Binding Path=Port, Mode=OneWay}" Width="2*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
